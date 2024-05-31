@@ -58,8 +58,7 @@ class VadaPov:
 
         except Exception as err:
             print(err)
-            return None
-
+    
     def process_link(self, link):
         res = requests.get(link, headers=self.headers)
         soup = BeautifulSoup(res.content, 'html.parser')
@@ -133,9 +132,13 @@ def media(id):
     try:
         v = VadaPov()
         x = v.main(id, ss, ep)
+        print(x)
         return jsonify(x)
     except Exception as err:
         return jsonify({'message': str(err)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run(debug=True, host="0.0.0.0")
+    v = VadaPov()
+    x = v.main(297802)
+    print(x)
