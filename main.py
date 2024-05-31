@@ -123,7 +123,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Made in China (fun)'
+    return 'Made in China (fun) . .....'
 
 @app.route('/<id>')
 def media(id):
