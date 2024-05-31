@@ -138,7 +138,10 @@ def media(id):
         return jsonify({'message': str(err)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    host = os.environ.get('HOST', '0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))  # Default port is 5000
+
+    app.run(debug=True, host=host,port=port)
     v = VadaPov()
     x = v.main(297802)
     print(x)
