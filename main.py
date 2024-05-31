@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import json
 from flask import Flask
+import os , sys
 
 
 class VadaPov:
@@ -91,11 +92,8 @@ def Movie(id):
         return x
     except Exception as err : 
         return {'message':'movie not found '}
-if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
-
-    # v = VadaPov()
-    # x = v.main(299536)
-
-    # with open ('x.json','w') as file : 
-    #     json.dump(x,file,indent=2)
+if __name__ == "__main__":
+    port = os.getenv("PORT", "8000")  # Default to port 8000 if PORT is not set
+    command = f"gunicorn -b 0.0.0.0:{port} main:app"
+    os.system(command)
+    
